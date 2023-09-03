@@ -8,6 +8,11 @@ require_once 'vendor/autoload.php';
 
 
 $core = Core::getInstance();
-$router = Router::getInstance();
+//создаем наши системные объекты...
+$core->init();
+
+//мне нужны методы объекты router, достаю их с помощью core
+$router = $core->getSystemObject('router');
+$router->findPatch();
 
 ?>

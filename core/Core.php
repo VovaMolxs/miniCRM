@@ -2,10 +2,13 @@
 
 namespace Core;
 
+use Core\Router\Router;
+
 class Core extends AbstractCore
 {
 
     private static $instance = null;
+    private $systemObject = [];
 
     //делаем класс одиночку
     public static function getInstance() {
@@ -22,9 +25,26 @@ class Core extends AbstractCore
     private function __clone() {
 
     }
-
+    //создаются системные обЪекты
     public function init()
     {
+        if (empty($this->systemObject)) {
+            //добавляем наши системные объекты для того чтобы не создавать их самим
+            $this->systemObject['router'] = Router::getInstance();
+        }
 
+        //создаем каждый системный объект...
+        foreach ($this->systemObject as $object) {
+            $object->init();
+        }
+    }
+
+    public function getSystemObject($param) {
+        foreach ($this->systemObject as $key => $value) {
+            if ($key == $param) {
+                return $value;
+            }
+        }
+        die('not find system Object!!!');
     }
 }
