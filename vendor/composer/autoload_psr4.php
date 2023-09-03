@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'eftec\\bladeone\\' => array($vendorDir . '/eftec/bladeone/lib'),
     'Core\\router\\' => array($baseDir . '/core/router'),
     'Core\\db\\' => array($baseDir . '/core/db'),
     'Core\\Template\\' => array($baseDir . '/core/Template'),

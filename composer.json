@@ -9,6 +9,8 @@
       "Core\\Exceptions\\": "core/exceptions",
       "Core\\Template\\": "core/Template"
     }
+  },
+  "require": {
+    "eftec/bladeone": "^4.9"
   }
-
 }

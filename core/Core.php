@@ -3,6 +3,7 @@
 namespace Core;
 
 use Core\Router\Router;
+use Core\Template\TemplateClass;
 
 class Core extends AbstractCore
 {
@@ -31,6 +32,7 @@ class Core extends AbstractCore
         if (empty($this->systemObject)) {
             //добавляем наши системные объекты для того чтобы не создавать их самим
             $this->systemObject['router'] = Router::getInstance();
+            $this->systemObject['template'] = TemplateClass::getInstance();
         }
 
         //создаем каждый системный объект...
