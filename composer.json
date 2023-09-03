@@ -1,0 +1,14 @@
+{
+  "autoload": {
+    "psr-4": {
+      "App\\Controllers\\": "app/controllers",
+      "App\\Models\\": "app/models",
+      "Core\\": "core",
+      "Core\\db\\": "core/db",
+      "Core\\router\\": "core/router",
+      "Core\\Exceptions\\": "core/exceptions",
+      "Core\\Template\\": "core/Template"
+    }
+  }
+
+}
