@@ -6,7 +6,9 @@ use Core\Core;
 
 class Controller
 {
-    public function display($template = 'index', array $params = []) {
+    public function index() {}
+
+    public function view($template = 'index', array $params = []) {
         $core = Core::getInstance();
 
         $templater = $core->getSystemObject('template');

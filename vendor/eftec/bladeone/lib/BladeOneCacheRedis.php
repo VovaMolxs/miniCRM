@@ -25,7 +25,7 @@ use function time;
  * It also adds a new function (optional) to the business or logic layer
  * <code>
  * if ($blade->cacheExpired('hellocache',1,5)) {   //'helloonecache' =template, =1 id cache, 5=duration (seconds)
- *    // cache expired, so we should do some stuff (such as read from the database)
+ *    // cache expired, so we should do some stuff (such as read from the db)
  * }
  * </code>
  *

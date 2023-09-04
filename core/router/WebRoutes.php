@@ -15,6 +15,21 @@ class WebRoutes
             'class' => 'App\Controllers\TestController',
             'method' => 'index',
         ],
+        '/users' => [
+            'file' => 'app/controllers/UsersController.php',
+            'class' => 'App\Controllers\UsersController',
+            'method' => 'index',
+        ],
+        '/users/create' => [
+            'file' => 'app/controllers/UsersController.php',
+            'class' => 'App\Controllers\UsersController',
+            'method' => 'create',
+        ],
+        '/users/store' => [
+            'file' => 'app/controllers/UsersController.php',
+            'class' => 'App\Controllers\UsersController',
+            'method' => 'store',
+        ],
 
     ];
 
