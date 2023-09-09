@@ -9,10 +9,10 @@
 <body>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a href="#">MINI CRM</a>
+        <a class="navbar-brand" href="#">MINI CRM</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="nav-item">
-                <a href="#" class="nav-link">Users</a>
+                <a href="/users" class="nav-link">Users</a>
             </ul>
         </div>
     </nav>

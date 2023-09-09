@@ -24,8 +24,8 @@
                 <td>{{$v['created_at']}}</td>
 
                 <td>
-                    <a href="" class="btn btn-primary">Edit</a>
-                    <a href="" class="btn btn-danger">Delete</a>
+                    <a href="users/edit/{{$v['id']}}" class="btn btn-primary">Edit</a>
+                    <a href="users/delete/{{$v['id']}}" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         @endforeach

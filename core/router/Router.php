@@ -41,6 +41,7 @@ class Router extends AbstractCore
     }
 
     public function checkFile($param) {
+
         if (!file_exists($param['file'])) {
             die('There is not such file!');
         }

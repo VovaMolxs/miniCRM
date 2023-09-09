@@ -33,4 +33,26 @@ class UsersController extends Controller
             header('Location: /users');
         }
     }
+
+    public function delete($param) {
+        $userModel = new User();
+
+        $userModel->delete($param);
+        header('Location: /users');
+    }
+
+    public function edit($param) {
+        $userModel = new User();
+        $user = $userModel->read($param);
+
+        $this->view('users.edit', compact('user'));
+
+    }
+
+    public function update() {
+        $userModel = new User();
+        $userModel->update($_POST);
+
+        header('Location: /users');
+    }
 }
