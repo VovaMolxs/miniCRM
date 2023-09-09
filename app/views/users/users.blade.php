@@ -7,8 +7,12 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Login</th>
-            <th scope="col">Admin</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Email verification</th>
+            <th scope="col">Is Admin</th>
+            <th scope="col">Role</th>
+            <th scope="col">Is active</th>
             <th scope="col">Created</th>
             <th scope="col">Actions</th>
         </tr>
@@ -19,8 +23,30 @@
             <tr>
 
                 <th scope="row">{{$v['id']}}</th>
-                <td>{{$v['login']}}</td>
-                <td>{{$v['is_admin']}}</td>
+                <td>{{$v['username']}}</td>
+                <td>{{$v['email']}}</td>
+                <td>
+                    @if($v['email_verification'] == 1)
+                        Yes
+                    @else
+                        NO
+                    @endif
+                </td>
+                <td>
+                    @if($v['is_admin'] == 1)
+                    Admin
+                    @else
+                    NO
+                    @endif
+                </td>
+                <td>{{$v['role']}}</td>
+                <td>
+                    @if($v['is_active'] == 1)
+                    YES
+                    @else
+                    No
+                    @endif
+                </td>
                 <td>{{$v['created_at']}}</td>
 
                 <td>

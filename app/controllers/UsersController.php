@@ -19,9 +19,13 @@ class UsersController extends Controller
     }
 
     public function store() {
-        if (isset($_POST['login']) && isset($_POST['password']) && isset($_POST['confirm_password']) && isset($_POST['admin'])) {
-            $password = isset($_POST['password']);
-            $confirm_password = isset($_POST['confirm_password']);
+        if (isset($_POST['username']) &&
+            isset($_POST['email']) &&
+            isset($_POST['password']) &&
+            isset($_POST['confirm_password'])) {
+
+            $password = $_POST['password'];
+            $confirm_password = $_POST['confirm_password'];
 
             if ($password !== $confirm_password) {
                 echo "Password do not match!";
@@ -29,9 +33,15 @@ class UsersController extends Controller
             }
 
             $userModel = new User();
-            $userModel->create($_POST);
-            header('Location: /users');
+            $data = [
+                'username' => $_POST['username'],
+                'email' => $_POST['email'],
+                'password' => password_hash($password, PASSWORD_DEFAULT),
+                'role' => 1,
+            ];
+            $userModel->create($data);
         }
+        header('Location: /users');
     }
 
     public function delete($param) {
