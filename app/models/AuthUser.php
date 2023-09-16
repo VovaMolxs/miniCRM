@@ -1,11 +1,12 @@
 <?php
+
 namespace App\Models;
 
 use Core\Db\Database;
 use PDO;
 use PDOException;
 
-class User
+class AuthUser
 {
     private $db;
 
@@ -48,34 +49,14 @@ class User
         }
     }
 
-    public function getAll() {
-        try {
-            $stmt = $this->db->query("SELECT * FROM users");
-            $users = [];
+    public function register($username, $email, $password) {
+       $created_at = date('Y-m-d H:i:s');
 
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $users[] = $row;
-            }
-        } catch (PDOException $exception) {
-            return false;
-        }
-
-
-        return $users;
-    }
-
-    public function create($data) {
-        $username = $data['username'];
-        $password = $data['password'];
-        $email = $data['email'];
-        $role = $data['role'];
-        $created_at = date('Y-m-d H:i:s');
-
-        $query = "INSERT INTO users (username, email, password, role, created_at) VALUE (?,?,?,?,?)";
+       $query = "INSERT INTO users (username, email, password, created_at) VALUES (?,?,?,?)";
 
         try {
             $stmt = $this->db->prepare($query);
-            $stmt->execute([$username, $email, password_hash($password, PASSWORD_DEFAULT), $role, $created_at]);
+            $stmt->execute([$username, $email, password_hash($password, PASSWORD_DEFAULT), $created_at]);
             return true;
         } catch (PDOException $exception) {
             return false;
@@ -83,47 +64,38 @@ class User
 
     }
 
-    public function delete($id) {
-        $query = "DELETE FROM users WHERE id = ?";
-
+    public function login($email, $password) {
         try {
+            $query = "SELECT * FROM users WHERE email = ? LIMIT 1";
+
             $stmt = $this->db->prepare($query);
-            $stmt->execute([$id]);
-            return true;
-        } catch (PDOException $exception) {
-            return false;
-        }
-
-    }
-
-    public function update($data) {
-        $id = $data['id'];
-        $login = $data['username'];
-        $email = $data['email'];
-        $role = $data['role'];
-        $is_active = isset($data['is_active']) ? 1 : 0;
-
-        $query = "UPDATE users SET username = ?, email = ?, role = ?, is_active = ? WHERE id = ?";
-        try {
-            $stmt = $this->db->prepare($query);
-            $stmt->execute([$login, $email, $role, $is_active, $id]);
-            return true;
-        } catch (PDOException $exception) {
-            return false;
-        }
-    }
-
-    public function read($id) {
-        $query = 'SELECT * FROM users WHERE id = ?';
-
-        try {
-            $stmt = $this->db->prepare($query);
-            $stmt->execute([$id]);
+            $stmt->execute($email);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $user;
+
+            if ($user && password_verify($password, $user['password'])) {
+                return $user;
+            }
+
+            return false;
         } catch (PDOException $exception) {
             return false;
         }
+
+    }
+
+    public function findByEmail($email) {
+        try {
+            $query = "SELECT * FROM users WHERE email = ? LIMIT 1";
+
+            $stmt = $this->db->prepare($query);
+            $stmt->execute([$email]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return $user ? $user : false;
+        } catch (PDOException $exception) {
+            return false;
+        }
+
     }
 
 }

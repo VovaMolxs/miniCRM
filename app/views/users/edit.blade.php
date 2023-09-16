@@ -21,26 +21,9 @@
         <div class="mb-3">
             <label for="role" class="form-label">Role</label>
             <select class="form-control" name="role" id="select">
-                <option value="0"
-                @if($user['role'] == 0)
-                    selected
-                @endif
-                >User</option>
-                <option value="1"
-                @if($user['role'] == 1)
-                    selected
-                @endif
-                >Content Creator</option>
-                <option value="2"
-                @if($user['role'] == 2)
-                    selected
-                @endif
-                >Editor</option>
-                <option value="3"
-                @if($user['role'] == 3)
-                    selected
-                @endif
-                >Admin</option>
+                @foreach($role as $key=>$val)
+                <option value="{{$val['id']}}" @if($user['role'] == $val['id']) "selected" @endif>{{$val['role_name']}}</option>
+                @endforeach
             </select>
         </div>
         <div class="mb-3 form-check">

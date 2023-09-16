@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\users;
 
+use App\Controllers\Controller;
+use App\Models\roles\Role;
 use App\Models\User;
 
 class UsersController extends Controller
@@ -36,7 +38,7 @@ class UsersController extends Controller
             $data = [
                 'username' => $_POST['username'],
                 'email' => $_POST['email'],
-                'password' => password_hash($password, PASSWORD_DEFAULT),
+                'password' => $_POST['password'],
                 'role' => 1,
             ];
             $userModel->create($data);
@@ -55,7 +57,10 @@ class UsersController extends Controller
         $userModel = new User();
         $user = $userModel->read($param);
 
-        $this->view('users.edit', compact('user'));
+        $userRole = new Role();
+        $role = $userRole->getAllRoles();
+
+        $this->view('users.edit', compact('user', 'role'));
 
     }
 

@@ -37,7 +37,7 @@ class Router extends AbstractCore
         $object = $this->checkClass($fileInfo);
         if (!empty($fileInfo['param'])) {
             $this->checkMethod($object, $fileInfo['method'], $fileInfo['param']);
-        }   $this->checkMethod($object, $fileInfo['method']);
+        } else $this->checkMethod($object, $fileInfo['method']);
     }
 
     public function checkFile($param) {
