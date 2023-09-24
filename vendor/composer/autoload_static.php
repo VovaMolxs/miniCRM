@@ -17,12 +17,14 @@ class ComposerStaticInite149e8463f49fc635642031d7d0b6a36
             'Core\\db\\' => 8,
             'Core\\Template\\' => 14,
             'Core\\Exceptions\\' => 16,
+            'Core\\DI\\' => 8,
             'Core\\' => 5,
         ),
         'A' => 
         array (
             'App\\Models\\' => 11,
             'App\\Controllers\\' => 16,
+            'App\\Contracts\\' => 14,
         ),
     );
 
@@ -47,6 +49,10 @@ class ComposerStaticInite149e8463f49fc635642031d7d0b6a36
         array (
             0 => __DIR__ . '/../..' . '/core/exceptions',
         ),
+        'Core\\DI\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/core/di',
+        ),
         'Core\\' => 
         array (
             0 => __DIR__ . '/../..' . '/core',
@@ -58,6 +64,10 @@ class ComposerStaticInite149e8463f49fc635642031d7d0b6a36
         'App\\Controllers\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app/controllers',
+        ),
+        'App\\Contracts\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/contracts',
         ),
     );
 

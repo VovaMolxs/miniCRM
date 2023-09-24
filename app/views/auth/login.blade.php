@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Login User')
+@section('title', 'Login UserModel')
 @section('content')
     <div class="row justify-content-center mt-5">
         <div class="col-lg-6 col-md-8 col-sm-10">

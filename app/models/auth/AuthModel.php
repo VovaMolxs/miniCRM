@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\auth;
 
+use App\Contracts\Model;
 use Core\Db\Database;
 use PDO;
 use PDOException;
 
-class AuthUser
+class AuthModel implements Model
 {
     private $db;
 

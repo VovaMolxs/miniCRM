@@ -11,7 +11,9 @@ return array(
     'Core\\db\\' => array($baseDir . '/core/db'),
     'Core\\Template\\' => array($baseDir . '/core/Template'),
     'Core\\Exceptions\\' => array($baseDir . '/core/exceptions'),
+    'Core\\DI\\' => array($baseDir . '/core/di'),
     'Core\\' => array($baseDir . '/core'),
     'App\\Models\\' => array($baseDir . '/app/models'),
     'App\\Controllers\\' => array($baseDir . '/app/controllers'),
+    'App\\Contracts\\' => array($baseDir . '/app/contracts'),
 );

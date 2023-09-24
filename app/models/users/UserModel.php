@@ -1,11 +1,12 @@
 <?php
-namespace App\Models;
+namespace App\Models\users;
 
+use App\Contracts\Model;
 use Core\Db\Database;
 use PDO;
 use PDOException;
 
-class User
+class UserModel implements Model
 {
     private $db;
 
@@ -59,7 +60,6 @@ class User
         } catch (PDOException $exception) {
             return false;
         }
-
 
         return $users;
     }

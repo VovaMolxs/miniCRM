@@ -3,11 +3,13 @@
     "psr-4": {
       "App\\Controllers\\": "app/controllers",
       "App\\Models\\": "app/models",
+      "App\\Contracts\\": "app/contracts",
       "Core\\": "core",
       "Core\\db\\": "core/db",
       "Core\\router\\": "core/router",
       "Core\\Exceptions\\": "core/exceptions",
-      "Core\\Template\\": "core/Template"
+      "Core\\Template\\": "core/Template",
+      "Core\\DI\\": "core/di"
     }
   },
   "require": {

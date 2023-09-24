@@ -2,12 +2,24 @@
 
 namespace App\Controllers\auth;
 
-use App\Controllers\Controller;
-use App\Models\AuthUser;
+use App\Contracts\Model;
+use App\Controllers\BaseController;
+use App\Models\auth\AuthModel;
+use App\Models\roles\RoleModel;
+use App\Models\users\UserModel;
 use function App\Controllers\setcookie;
 
-class AuthController extends Controller
+class AuthController extends BaseController
 {
+
+    private Model $authModel;
+
+    public function __construct(Model $authModel)
+    {
+        $this->authModel = $authModel;
+    }
+
+
     public function register() {
         $this->view('auth.register');
     }
@@ -17,14 +29,14 @@ class AuthController extends Controller
     }
 
     public function authenticate() {
-        $authModel = new AuthUser();
+
 
         if (isset($_POST['email']) && isset($_POST['password'])) {
             $email = $_POST['email'];
             $password = $_POST['password'];
             $remember = isset($_POST['remember']) ? $_POST['remember'] : '';
 
-            $user = $authModel->findByEmail($email);
+            $user = $this->authModel->findByEmail($email);
 
             if ($user && password_verify($password, $user['password'])) {
                 session_start();
@@ -72,8 +84,8 @@ class AuthController extends Controller
                 return;
             }
 
-            $authUser = new AuthUser();
-            $authUser->register($username, $email, $password);
+
+            $this->authModel->register($username, $email, $password);
         }
         header('Location: /login');
     }

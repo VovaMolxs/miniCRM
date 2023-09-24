@@ -3,15 +3,23 @@
 namespace App\Controllers\roles;
 
 
-use App\Controllers\Controller;
-use App\Models\roles\Role;
+use App\Contracts\Model;
+use App\Controllers\BaseController;
+use App\Models\roles\RoleModel;
 
-class RoleController extends Controller
+class RoleController extends BaseController
 {
+    private Model $roleModel;
+
+    public function __construct(Model $roleModel)
+    {
+        $this->roleModel = $roleModel;
+    }
+
     public function index()
     {
-        $roleModel = new Role();
-        $roles = $roleModel->getAllRoles();
+
+        $roles = $this->roleModel->getAllRoles();
 
         $this->view('roles.index', compact('roles'));
     }
@@ -27,24 +35,22 @@ class RoleController extends Controller
             $role_name = $_POST['role_name'];
             $role_description = $_POST['role_description'];
 
-            $role = new Role();
-            $role->createRole($role_name, $role_description);
+            $this->roleModel->createRole($role_name, $role_description);
         }
         header('Location: /roles');
     }
 
     public function delete($param) {
-        $role = new Role();
 
-        $role->deleteRole($param);
+        $this->roleModel->deleteRole($param);
         header('Location: /roles');
     }
 
     public function edit($param) {
-        $role = new Role();
-        $role = $role->getRoleById($param);
+
+        $role = $this->roleModel->getRoleById($param);
         if (!$role) {
-            echo "Role not found!";
+            echo "RoleModel not found!";
         }
         $this->view('roles.edit', compact('role'));
 
@@ -61,12 +67,11 @@ class RoleController extends Controller
             $role_description = trim($_POST['role_description']);
 
             if (empty($role_name)) {
-                echo "Role name is not required!";
+                echo "RoleModel name is not required!";
                 return;
             }
 
-            $role = new Role();
-            $role->updateRole($role_name, $role_description, $id);
+            $this->roleModel->updateRole($role_name, $role_description, $id);
         }
 
 

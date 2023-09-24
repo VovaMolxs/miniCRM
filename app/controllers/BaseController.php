@@ -2,11 +2,11 @@
 
 namespace App\Controllers;
 
+use App\Contracts\Controller;
 use Core\Core;
 
-class Controller
+class BaseController implements Controller
 {
-    public function index() {}
 
     public function view($template = 'index', array $params = []) {
         $core = Core::getInstance();
@@ -14,5 +14,10 @@ class Controller
         $templater = $core->getSystemObject('template');
         $blade = $templater->getBlade();
         echo $blade->run($template, $params);
+    }
+
+    public function index()
+    {
+        // TODO: Implement index() method.
     }
 }

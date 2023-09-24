@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Create User')
+@section('title', 'Create UserModel')
 @section('content')
     <h1>Update User</h1>
     <form action="../update" method="POST">

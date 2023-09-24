@@ -11,6 +11,8 @@
       <sourceFolder url="file://$MODULE_DIR$/core/router" isTestSource="false" packagePrefix="Core\router\" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/core/di" isTestSource="false" packagePrefix="Core\DI\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/contracts" isTestSource="false" packagePrefix="App\Contracts\" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

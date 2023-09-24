@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Create User')
+@section('title', 'Create UserModel')
 @section('content')
     <h1>Create User</h1>
     <form action="store" method="POST">

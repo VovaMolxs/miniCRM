@@ -3509,7 +3509,7 @@ class BladeOne
     }
 
     /**
-     * Compile the User statements into valid PHP.
+     * Compile the UserModel statements into valid PHP.
      *
      * @return string
      */

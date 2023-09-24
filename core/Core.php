@@ -2,8 +2,10 @@
 
 namespace Core;
 
+use Core\Router\Route;
 use Core\Router\Router;
 use Core\Template\TemplateClass;
+use Core\DI\DIContainer;
 
 class Core extends AbstractCore
 {
@@ -31,8 +33,9 @@ class Core extends AbstractCore
     {
         if (empty($this->systemObject)) {
             //добавляем наши системные объекты для того чтобы не создавать их самим
-            $this->systemObject['router'] = Router::getInstance();
             $this->systemObject['template'] = TemplateClass::getInstance();
+            $this->systemObject['di'] = diContainer::getInstance();
+            $this->systemObject['router'] = Route::getInstance();
         }
 
         //создаем каждый системный объект...

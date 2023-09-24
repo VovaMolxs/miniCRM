@@ -2,16 +2,27 @@
 
 namespace App\Controllers\users;
 
-use App\Controllers\Controller;
-use App\Models\roles\Role;
-use App\Models\User;
+use App\Contracts\Controller;
+use App\Contracts\Model;
+use App\Controllers\BaseController;
+use App\Models\roles\RoleModel;
+use App\Models\users\UserModel;
 
-class UsersController extends Controller
+class UsersController extends BaseController
 {
+    private Model $userModel;
+    private Model $userRole;
+
+    public function __construct(Model $userModel, Model $roleModel)
+    {
+        $this->userModel = $userModel;
+        $this->userRole = $roleModel;
+    }
+
+
     public function index()
     {
-        $userModel = new User();
-        $users = $userModel->getAll();
+        $users = $this->userModel->getAll();
 
         $this->view('users.users', compact('users'));
     }
@@ -34,39 +45,36 @@ class UsersController extends Controller
                 return;
             }
 
-            $userModel = new User();
+
             $data = [
                 'username' => $_POST['username'],
                 'email' => $_POST['email'],
                 'password' => $_POST['password'],
                 'role' => 1,
             ];
-            $userModel->create($data);
+            $this->userModel->create($data);
         }
         header('Location: /users');
     }
 
     public function delete($param) {
-        $userModel = new User();
 
-        $userModel->delete($param);
+
+        $this->userModel->delete($param);
         header('Location: /users');
     }
 
     public function edit($param) {
-        $userModel = new User();
-        $user = $userModel->read($param);
-
-        $userRole = new Role();
-        $role = $userRole->getAllRoles();
+        $user = $this->userModel->read($param);
+        $role = $this->userRole->getAllRoles();
 
         $this->view('users.edit', compact('user', 'role'));
 
     }
 
     public function update() {
-        $userModel = new User();
-        $userModel->update($_POST);
+
+        $this->userModel->update($_POST);
 
         header('Location: /users');
     }

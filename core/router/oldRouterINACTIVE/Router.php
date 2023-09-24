@@ -2,6 +2,7 @@
 namespace Core\Router;
 
 use Core\AbstractCore;
+use Core\Core;
 
 class Router extends AbstractCore
 {
@@ -49,14 +50,14 @@ class Router extends AbstractCore
     }
 
     public function checkClass($param) {
+        $container = Core::getInstance()->getSystemObject('di');
+
         if (!class_exists($param['class'])) {
             echo $param['class'];
             //throw new \Exception($param['class']." does not exist");
         }
-        //if (!$param['view'])
-        return new $param['class']();
+        return $container->get($param['class']);
 
-        //return new $param['class']($param['view']);
     }
 
     public function checkMethod($object, $method, $params  = null, $redirect = null) {

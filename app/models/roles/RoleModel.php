@@ -2,11 +2,12 @@
 
 namespace App\Models\roles;
 
+use App\Contracts\Model;
 use Core\Db\Database;
 use PDO;
 use PDOException;
 
-class Role
+class RoleModel implements Model
 {
     private $db;
 

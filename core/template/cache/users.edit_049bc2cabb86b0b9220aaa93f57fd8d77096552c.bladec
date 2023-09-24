@@ -1,5 +1,5 @@
 <?php $_shouldextend[1]=1; ?>
-<?php $this->startSection('title', 'Create User'); ?>
+<?php $this->startSection('title', 'Create UserModel'); ?>
 <?php $this->startSection('content'); ?>
  <h1>Update User</h1>
  <form action="../update" method="POST">

@@ -1,5 +1,5 @@
 <?php $_shouldextend[1]=1; ?>
-<?php $this->startSection('title', 'Login User'); ?>
+<?php $this->startSection('title', 'Login UserModel'); ?>
 <?php $this->startSection('content'); ?>
  <div class="row justify-content-center mt-5">
  <div class="col-lg-6 col-md-8 col-sm-10">

@@ -1,7 +1,9 @@
 <?php
 namespace App\Controllers;
 
-class IndexController extends Controller
+use App\Contracts\Controller;
+
+class IndexController extends BaseController
 {
     public function index() {
         $this->view('index');
