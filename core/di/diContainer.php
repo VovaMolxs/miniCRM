@@ -5,6 +5,7 @@ namespace Core\di;
 use App\Controllers\auth\AuthController;
 use App\Controllers\IndexController;
 use App\Controllers\roles\RoleController;
+use App\Controllers\status\StatusController;
 use App\Controllers\users\UsersController;
 use App\Models\auth\AuthModel;
 use App\Models\roles\RoleModel;
@@ -52,6 +53,9 @@ class diContainer extends AbstractCore
                 return new AuthController(
                     $this->get(AuthModel::class)
                 );
+            },
+            StatusController::class => function () {
+                return new StatusController();
             },
             UserModel::class => function () {
                 return new UserModel();

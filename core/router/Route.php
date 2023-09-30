@@ -31,8 +31,9 @@ class Route
 
         foreach (self::getRouterGet() as $routeConfiguration) {
             $routeDispatcher = new RouteDispatcher($routeConfiguration);
-            $routeDispatcher->process();
+            $routeDispatcher->prepareRoute();
         }
+        die('Page not found!');
     }
 
      public static function get(string $route, array $controller): RouteConfiguration

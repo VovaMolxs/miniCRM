@@ -114,13 +114,12 @@ class UserModel implements Model
     }
 
     public function read($id) {
-        $query = 'SELECT * FROM users WHERE id = ?';
-
         try {
+            $query = 'SELECT * FROM users WHERE id = ?';
             $stmt = $this->db->prepare($query);
             $stmt->execute([$id]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $user;
+            return $user ? $user : false;
         } catch (PDOException $exception) {
             return false;
         }

@@ -21,7 +21,7 @@ class RouteDispatcher
         $this->routeConfiguration = $routeConfiguration;
     }
 
-    public function process() {
+    public function prepareRoute() {
         //приходит запрос, и мы сразу удаляем слэши
         //разбиваем строку запроса на массив
         //разбиваем строку запросана массив и проверяем  если такой параметр
@@ -34,6 +34,7 @@ class RouteDispatcher
         $this->makeRegexRequest();
         $this->run();
 
+
     }
 
     private function saveRequestUri() {
@@ -41,7 +42,6 @@ class RouteDispatcher
             $this->requestUri =$this->clean($_SERVER['REQUEST_URI']);
             $this->routeConfiguration->setRoute($this->clean($this->routeConfiguration->getRoute()));
         }
-
     }
 
     private function clean($str) {
@@ -49,25 +49,29 @@ class RouteDispatcher
     }
 
     private function setParamMap() {
+
         $routeArray = explode('/', $this->routeConfiguration->getRoute());
+
         foreach ($routeArray as $paramKey => $param) {
             if (preg_match('/{.*}/', $param)) {
                 $this->paramMap[$paramKey] = preg_replace('/(^{)|(}*)/', '', $param);
             }
         }
+
     }
 
     private function makeRegexRequest() {
         $requestUriArray = explode('/', $this->requestUri);
 
+
         foreach ($this->paramMap as $paramKey => $param) {
             if (!isset($requestUriArray[$paramKey])) {
-                return;
+                break;
             }
+
             $this->paramRequestMap[$param] = $requestUriArray[$paramKey];
             $requestUriArray[$paramKey] = '{.*}';
         }
-
         $this->requestUri = implode('/', $requestUriArray);
         $this->prepareRegex();
 
@@ -78,14 +82,19 @@ class RouteDispatcher
         $this->requestUri = str_replace('/', '\/', $this->requestUri);
     }
 
-    private function run() {
-        try {
+    public function checkRoute() {
+        if ($this->requestUri !== $this->routeConfiguration->getRoute()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function run() {
+
             if(preg_match("/$this->requestUri/", $this->routeConfiguration->getRoute())) {
                 return $this->render();
             }
-        } catch (Throwable $exception) {
-            die("Page not found!");
-        }
     }
 
     private function render() {
@@ -96,7 +105,7 @@ class RouteDispatcher
         $container = Core::getInstance()->getSystemObject('di');
         $object = $container->get($ClassName);
         $object->$action(...$this->paramRequestMap);
-        die();
+        die;
 
     }
 }

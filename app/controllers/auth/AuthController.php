@@ -44,8 +44,8 @@ class AuthController extends BaseController
                 $_SESSION['user_role'] = $user['role'];
 
                 if ($remember == 'on') {
-                    setcookie('user_email', $email, time() + (7*24*60*60), '/');
-                    setcookie('password', $password, time() + (7*24*60*60), '/');
+                   setcookie('user_email', $email, time() + (7*24*60*60), '/');
+                   setcookie('password', $password, time() + (7*24*60*60), '/');
                 }
                 header('Location: /');
             } else {

@@ -66,6 +66,10 @@ class UsersController extends BaseController
 
     public function edit($param) {
         $user = $this->userModel->read($param);
+        if (!$user) {
+            die('Пользователь не найден!');
+        }
+        $user = $this->userModel->read($param);
         $role = $this->userRole->getAllRoles();
 
         $this->view('users.edit', compact('user', 'role'));

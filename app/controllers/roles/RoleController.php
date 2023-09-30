@@ -49,6 +49,7 @@ class RoleController extends BaseController
     public function edit($param) {
 
         $role = $this->roleModel->getRoleById($param);
+
         if (!$role) {
             echo "RoleModel not found!";
         }

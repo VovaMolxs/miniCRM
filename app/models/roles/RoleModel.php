@@ -56,6 +56,7 @@ class RoleModel implements Model
             $stmt = $this->db->prepare($query);
             $stmt->execute([$id]);
             $role = $stmt->fetch(PDO::FETCH_ASSOC);
+            var_dump($role);
             return $role ? $role : false;
         } catch (PDOException $exception) {
             return false;
