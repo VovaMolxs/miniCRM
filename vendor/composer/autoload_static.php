@@ -23,6 +23,7 @@ class ComposerStaticInite149e8463f49fc635642031d7d0b6a36
         'A' => 
         array (
             'App\\Models\\' => 11,
+            'App\\Middleware\\' => 15,
             'App\\Controllers\\' => 16,
             'App\\Contracts\\' => 14,
         ),
@@ -60,6 +61,10 @@ class ComposerStaticInite149e8463f49fc635642031d7d0b6a36
         'App\\Models\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app/models',
+        ),
+        'App\\Middleware\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/middleware',
         ),
         'App\\Controllers\\' => 
         array (

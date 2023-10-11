@@ -4,6 +4,7 @@
       "App\\Controllers\\": "app/controllers",
       "App\\Models\\": "app/models",
       "App\\Contracts\\": "app/contracts",
+      "App\\Middleware\\": "app/middleware",
       "Core\\": "core",
       "Core\\db\\": "core/db",
       "Core\\router\\": "core/router",

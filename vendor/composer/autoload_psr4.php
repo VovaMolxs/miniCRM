@@ -14,6 +14,7 @@ return array(
     'Core\\DI\\' => array($baseDir . '/core/di'),
     'Core\\' => array($baseDir . '/core'),
     'App\\Models\\' => array($baseDir . '/app/models'),
+    'App\\Middleware\\' => array($baseDir . '/app/middleware'),
     'App\\Controllers\\' => array($baseDir . '/app/controllers'),
     'App\\Contracts\\' => array($baseDir . '/app/contracts'),
 );

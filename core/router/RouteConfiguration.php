@@ -13,6 +13,14 @@ class RouteConfiguration
     private string $middleware;
 
     /**
+     * @return string
+     */
+    public function getMiddleware(): string
+    {
+        return $this->middleware;
+    }
+
+    /**
      * @param string $route
      * @param string $controller
      * @param string $action

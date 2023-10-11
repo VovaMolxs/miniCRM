@@ -2,6 +2,7 @@
 
 namespace Core\router;
 
+use App\Models\users\UserModel;
 use Core\Core;
 use Exception;
 use Throwable;
@@ -37,6 +38,7 @@ class RouteDispatcher
 
     }
 
+    //очищаем запрос от слэшей
     private function saveRequestUri() {
         if ($_SERVER['REQUEST_URI'] !== '/') {
             $this->requestUri =$this->clean($_SERVER['REQUEST_URI']);
@@ -44,10 +46,12 @@ class RouteDispatcher
         }
     }
 
+    //замена слэшей
     private function clean($str) {
         return preg_replace('/(^\/)|(\/$)/', '', $str);
     }
 
+    //разбиваем роут на массив и параметры
     private function setParamMap() {
 
         $routeArray = explode('/', $this->routeConfiguration->getRoute());
@@ -60,9 +64,9 @@ class RouteDispatcher
 
     }
 
+    //приводим строку запроса в регулярное выражение
     private function makeRegexRequest() {
         $requestUriArray = explode('/', $this->requestUri);
-
 
         foreach ($this->paramMap as $paramKey => $param) {
             if (!isset($requestUriArray[$paramKey])) {
@@ -82,14 +86,7 @@ class RouteDispatcher
         $this->requestUri = str_replace('/', '\/', $this->requestUri);
     }
 
-    public function checkRoute() {
-        if ($this->requestUri !== $this->routeConfiguration->getRoute()) {
-            return false;
-        }
-
-        return true;
-    }
-
+    //проверяем если наша строка запроса в роутинге, если есть вызываем метод на запуск контроллера
     public function run() {
 
             if(preg_match("/$this->requestUri/", $this->routeConfiguration->getRoute())) {
@@ -101,8 +98,9 @@ class RouteDispatcher
 
         $ClassName = $this->routeConfiguration->getController();
         $action = $this->routeConfiguration->getAction();
-
         $container = Core::getInstance()->getSystemObject('di');
+
+
         $object = $container->get($ClassName);
         $object->$action(...$this->paramRequestMap);
         die;

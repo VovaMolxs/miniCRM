@@ -39,6 +39,13 @@
                                 Roles
                             </a>
                     </li>
+                    <li>
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="/pages"></use></svg>
+                        <a href="/pages" class="nav-link text-white">
+                            <svg class="bi me-2" width="16" height="16"><use xlink:href="/pages"></use></svg>
+                            Pages
+                        </a>
+                    </li>
 
                     <li>
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="/register"></use></svg>

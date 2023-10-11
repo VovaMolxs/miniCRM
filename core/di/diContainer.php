@@ -4,10 +4,12 @@ namespace Core\di;
 
 use App\Controllers\auth\AuthController;
 use App\Controllers\IndexController;
+use App\Controllers\pages\PageController;
 use App\Controllers\roles\RoleController;
 use App\Controllers\status\StatusController;
 use App\Controllers\users\UsersController;
 use App\Models\auth\AuthModel;
+use App\Models\pages\PageModel;
 use App\Models\roles\RoleModel;
 use App\Models\users\UserModel;
 use Core\AbstractCore;
@@ -54,6 +56,11 @@ class diContainer extends AbstractCore
                     $this->get(AuthModel::class)
                 );
             },
+            PageController::class => function () {
+                return new PageController(
+                    $this->get(PageModel::class)
+                );
+            },
             StatusController::class => function () {
                 return new StatusController();
             },
@@ -65,6 +72,9 @@ class diContainer extends AbstractCore
             },
             AuthModel::class => function () {
                 return new AuthModel();
+            },
+            PageModel::class => function () {
+                return new PageModel();
             }
         ];
     }

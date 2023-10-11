@@ -1,10 +1,11 @@
 <?php
 namespace Core\Router;
 
-class Route
+class Router
 {
     private static $instance = null;
     private static array $routerGet = [];
+    private static array $routerPost = [];
 
     public function __clone(): void
     {
@@ -28,11 +29,15 @@ class Route
     }
 
     public function run() {
+        $requestMethod =  ucfirst(strtolower($_SERVER['REQUEST_METHOD']));
 
-        foreach (self::getRouterGet() as $routeConfiguration) {
+        $methodName = 'getRouter' . $requestMethod;
+
+        foreach (self::$methodName() as $routeConfiguration) {
             $routeDispatcher = new RouteDispatcher($routeConfiguration);
             $routeDispatcher->prepareRoute();
         }
+
         die('Page not found!');
     }
 
@@ -43,11 +48,26 @@ class Route
          return $routeConfiguration;
     }
 
+    public static function post(string $route, array $controller): RouteConfiguration
+     {
+         $routeConfiguration = new RouteConfiguration($route, $controller[0], $controller[1]);
+         self::$routerPost[] = $routeConfiguration;
+         return $routeConfiguration;
+    }
+
     /**
      * @return array
      */
     public static function getRouterGet(): array
     {
         return self::$routerGet;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getRouterPost(): array
+    {
+        return self::$routerPost;
     }
 }

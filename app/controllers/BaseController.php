@@ -18,6 +18,5 @@ class BaseController implements Controller
 
     public function index()
     {
-        // TODO: Implement index() method.
     }
 }
