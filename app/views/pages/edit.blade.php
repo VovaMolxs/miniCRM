@@ -14,6 +14,14 @@
                     <label for="role_description">Page slug</label>
                     <textarea class="form-control" id="page_slug" name="page_slug"  required>{{$page['slug']}}</textarea>
                 </div>
+                <div class="mb-3">
+                    @foreach($roles as $k=>$v)
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="roles[]" value="{{$v['id']}}">
+                            <label for="roles" class="form-check-label">{{$v['role_name']}}</label>
+                        </div>
+                    @endforeach
+                </div>
 
                 <button type="submit" class="btn btn-success">Update Page</button>
             </form>

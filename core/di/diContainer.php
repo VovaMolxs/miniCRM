@@ -9,6 +9,7 @@ use App\Controllers\roles\RoleController;
 use App\Controllers\status\StatusController;
 use App\Controllers\users\UsersController;
 use App\Models\auth\AuthModel;
+use App\Models\Check;
 use App\Models\pages\PageModel;
 use App\Models\roles\RoleModel;
 use App\Models\users\UserModel;
@@ -58,6 +59,13 @@ class diContainer extends AbstractCore
             },
             PageController::class => function () {
                 return new PageController(
+                    $this->get(PageModel::class),
+                    $this->get(RoleModel::class),
+                    $this->get(Check::class)
+                );
+            },
+            Check::class => function() {
+                return new Check(
                     $this->get(PageModel::class)
                 );
             },
@@ -75,7 +83,8 @@ class diContainer extends AbstractCore
             },
             PageModel::class => function () {
                 return new PageModel();
-            }
+            },
+
         ];
     }
 

@@ -27,6 +27,7 @@ class PageModel implements Model
             `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
             `title` VARCHAR(255) NOT NULL,
             `slug` VARCHAR(255) NOT NULL,
+            `role` VARCHAR(255) NOT NULL,
             `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)";
         try {
@@ -64,22 +65,34 @@ class PageModel implements Model
         }
     }
 
-    public function createPage($page_title, $page_slug) {
+    public function findBySlug($slug) {
         try {
-            $query = "INSERT INTO pages (title, slug) VALUES (?,?)";
+            $query = "SELECT * FROM pages WHERE slug = ?";
             $stmt = $this->db->prepare($query);
-            $stmt->execute([$page_title, $page_slug]);
+            $stmt->execute([$slug]);
+            $page = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $page ? $page : false;
+        } catch (PDOException $exception) {
+            return false;
+        }
+    }
+
+    public function createPage($page_title, $page_slug, $roles) {
+        try {
+            $query = "INSERT INTO pages (title, slug, role) VALUES (?,?,?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute([$page_title, $page_slug, $roles]);
             return true;
         } catch (PDOException $exception) {
             return false;
         }
     }
 
-    public function updatePage($page_title, $page_slug, $id) {
+    public function updatePage($page_title, $page_slug, $roles, $id) {
         try {
-            $query = "UPDATE pages SET title = ?, slug = ? WHERE id = ?";
+            $query = "UPDATE pages SET title = ?, slug = ?, role = ? WHERE id = ?";
             $stmt = $this->db->prepare($query);
-            $stmt->execute([$page_title, $page_slug, $id]);
+            $stmt->execute([$page_title, $page_slug, $roles, $id]);
             return true;
         } catch (PDOException $exception) {
             return false;

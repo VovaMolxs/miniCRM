@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 use Core\Core;
 use Core\Router\Router;

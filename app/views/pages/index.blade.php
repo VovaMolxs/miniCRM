@@ -11,6 +11,7 @@
                     <th>ID</th>
                     <th>Page Title</th>
                     <th>Page slug</th>
+                    <th>Page role</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -20,6 +21,7 @@
                         <td>{{$v['id']}}</td>
                         <td>{{$v['title']}}</td>
                         <td>{{$v['slug']}}</td>
+                        <td>{{$v['role']}}</td>
                         <td>
                             <a href="/pages/edit/{{$v['id']}}" class="btn btn-sm btn-outline-primary">Edit</a>
                             <a href="/pages/delete/{{$v['id']}}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
