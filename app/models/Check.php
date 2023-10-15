@@ -19,7 +19,7 @@ class Check implements Model
 
         $parseUrl = parse_url($url);
         $path = $parseUrl['path'];
-        preg_match('/[^\/]*$/', $path, $slug);
+        preg_match('/(?<=\/)([A-z0-9]+)/', $path, $slug);
         return $slug[0];
     }
 

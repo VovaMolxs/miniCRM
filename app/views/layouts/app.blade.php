@@ -18,56 +18,39 @@
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
-                            <svg class="bi me-2" width="16" height="16"><use xlink:href="/"></use></svg>
-                            <a href="/" class="nav-link active" aria-current="page">
+                            <a href="/" class="nav-link text-white  @php is_active('/') @endphp">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="/"></use></svg>
                                 Home
                             </a>
 
                     </li>
                     <li>
-                            <svg class="bi me-2" width="16" height="16"><use xlink:href="/users"></use></svg>
-                            <a href="/users" class="nav-link text-white">
+                            <a href="/users" class="nav-link text-white @php is_active('/users') @endphp">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="/users"></use></svg>
                                 Users
                             </a>
                     </li>
                     <li>
-                            <svg class="bi me-2" width="16" height="16"><use xlink:href="/roles"></use></svg>
-                            <a href="/roles" class="nav-link text-white">
+                            <a href="/roles" class="nav-link text-white @php is_active('/roles') @endphp" >
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="/roles"></use></svg>
                                 Roles
                             </a>
                     </li>
                     <li>
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="/pages"></use></svg>
-                        <a href="/pages" class="nav-link text-white">
+                        <a href="/pages" class="nav-link text-white @php is_active('/pages') @endphp" >
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="/pages"></use></svg>
                             Pages
                         </a>
                     </li>
+                    <hr>
+                    <h5>To Do List</h5>
+                    <li>
+                        <a href="/todo/category" class="nav-link text-white @php is_active('/todo/category') @endphp" >
+                            <svg class="bi me-2" width="16" height="16"><use xlink:href="/todo/category"></use></svg>
+                            Category
+                        </a>
+                    </li>
 
-                    <li>
-                            <svg class="bi me-2" width="16" height="16"><use xlink:href="/register"></use></svg>
-                            <a href="/register" class="nav-link text-white">
-                                <svg class="bi me-2" width="16" height="16"><use xlink:href="/register"></use></svg>
-                                Register
-                            </a>
-                    </li>
-                    <li>
-                            <svg class="bi me-2" width="16" height="16"><use xlink:href="/login"></use></svg>
-                            <a href="/login" class="nav-link text-white">
-                                <svg class="bi me-2" width="16" height="16"><use xlink:href="/login"></use></svg>
-                                Login
-                            </a>
-                    </li>
-                    <li>
-                            <svg class="bi me-2" width="16" height="16"><use xlink:href="/logout"></use></svg>
-                            <a href="/logout" class="nav-link text-white">
-                                <svg class="bi me-2" width="16" height="16"><use xlink:href="/logout"></use></svg>
-                                Logout
-                            </a>
-                    </li>
                 </ul>
                 <hr>
                 <div class="dropdown">
@@ -80,7 +63,8 @@
                         <li><a class="dropdown-item" href="#">Settings</a></li>
                         <li><a class="dropdown-item" href="#">Profile</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        <li><a class="dropdown-item" href="/login">Sign in</a></li>
+                        <li><a class="dropdown-item" href="/logout">Sign out</a></li>
                     </ul>
                 </div>
         </div>

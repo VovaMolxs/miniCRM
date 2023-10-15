@@ -85,8 +85,8 @@ class UsersController extends BaseController
 
     public function update() {
         $this->checkRole->requiredPermission();
-
         $this->userModel->update($_POST);
+        $_SESSION['user_role'] = (int) $_POST['role'];
 
         header('Location: /users');
     }

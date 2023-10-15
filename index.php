@@ -1,8 +1,10 @@
 <?php
 session_start();
+require_once 'core/userFunctions/functions.php';
 
 use Core\Core;
 use Core\Router\Router;
+
 /*
 //E_Warning теперь можно отловить...
 function exception_error_handler($severity, $message, $file, $line) {

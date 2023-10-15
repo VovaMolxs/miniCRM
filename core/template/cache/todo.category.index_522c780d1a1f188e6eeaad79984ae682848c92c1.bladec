@@ -1,0 +1,38 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('title', 'Edit RoleModel'); ?>
+<?php $this->startSection('content'); ?>
+ <div class="row justify-content-center mt-5">
+ <div class="col-lg-10 col-md-10 col-sm-10">
+ <h1 class="text-center mb-4">ToDo Categorys</h1>
+ <a href="category/create" class="btn btn-primary">Create Category</a>
+ <table class="table">
+ <thead>
+ <tr>
+ <th>ID</th>
+ <th>Category Title</th>
+ <th>Category Description</th>
+ <th>Category Usability</th>
+ <th>Action</th>
+ </tr>
+ </thead>
+ <tbody>
+ <?php $__currentLoopData = $category; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $k=>$v): $loop = $this->incrementLoopIndices();  ?>
+ <tr>
+ <td><?php echo \htmlentities($v['id']??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities($v['title']??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities($v['description']??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities($v['usability']??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td>
+ <a href="/todo/category/edit/<?php echo \htmlentities($v['id']??'', ENT_QUOTES, 'UTF-8', false); ?>" class="btn btn-sm btn-outline-primary">Edit</a>
+ <a href="/todo/category/delete/<?php echo \htmlentities($v['id']??'', ENT_QUOTES, 'UTF-8', false); ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+ </td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </tbody>
+
+ </table>
+ </div>
+ </div>
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layouts.app'); } ?>

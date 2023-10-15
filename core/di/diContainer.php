@@ -7,11 +7,13 @@ use App\Controllers\IndexController;
 use App\Controllers\pages\PageController;
 use App\Controllers\roles\RoleController;
 use App\Controllers\status\StatusController;
+use App\Controllers\todo\category\CategoryController;
 use App\Controllers\users\UsersController;
 use App\Models\auth\AuthModel;
 use App\Models\Check;
 use App\Models\pages\PageModel;
 use App\Models\roles\RoleModel;
+use App\Models\todo\category\CategoryModel;
 use App\Models\users\UserModel;
 use Core\AbstractCore;
 
@@ -71,6 +73,12 @@ class diContainer extends AbstractCore
                     $this->get(PageModel::class)
                 );
             },
+            CategoryController::class => function () {
+                return new CategoryController(
+                    $this->get(CategoryModel::class),
+                    $this->get(Check::class)
+                );
+            },
             StatusController::class => function () {
                 return new StatusController();
             },
@@ -86,6 +94,10 @@ class diContainer extends AbstractCore
             PageModel::class => function () {
                 return new PageModel();
             },
+            CategoryModel::class => function () {
+                return new CategoryModel();
+            }
+
 
         ];
     }

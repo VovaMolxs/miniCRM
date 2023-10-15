@@ -55,7 +55,6 @@ class RoleController extends BaseController
     }
 
     public function edit($param) {
-        $this->checkRole->requiredPermission();
 
         $role = $this->roleModel->getRoleById($param);
 
@@ -67,7 +66,7 @@ class RoleController extends BaseController
     }
 
     public function update() {
-        $this->checkRole->requiredPermission();
+
 
         if (isset($_POST['id']) &&
             isset($_POST['role_name']) &&

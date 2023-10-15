@@ -66,7 +66,6 @@ class PageController extends BaseController
 
 
     public function edit($param) {
-        $this->checkRole->requiredPermission();
 
         $page = $this->pageModel->getPageById($param);
         $roles = $this->roleModel->getAllRoles();
@@ -80,7 +79,6 @@ class PageController extends BaseController
     }
 
     public function update() {
-        $this->checkRole->requiredPermission();
 
         if (isset($_POST['id']) &&
             isset($_POST['page_title']) &&
