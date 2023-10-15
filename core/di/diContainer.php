@@ -44,12 +44,14 @@ class diContainer extends AbstractCore
             UsersController::class => function () {
                 return new UsersController(
                     $this->get(UserModel::class),
-                    $this->get(RoleModel::class)
+                    $this->get(RoleModel::class),
+                    $this->get(Check::class)
                 );
             },
             RoleController::class => function () {
                 return new RoleController(
-                  $this->get(RoleModel::class)
+                    $this->get(RoleModel::class),
+                    $this->get(Check::class)
                 );
             },
             AuthController::class => function () {

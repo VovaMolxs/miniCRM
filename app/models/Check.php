@@ -32,6 +32,10 @@ class Check implements Model
 
         $allowedRoles = explode(',', $page['role']);
 
+        if($_SESSION['user_role'] == 5) {
+            return true;
+        }
+
         if (isset($_SESSION['user_role']) && in_array($_SESSION['user_role'], $allowedRoles)) {
             return true;
         } else {

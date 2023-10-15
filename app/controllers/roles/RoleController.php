@@ -10,14 +10,17 @@ use App\Models\roles\RoleModel;
 class RoleController extends BaseController
 {
     private Model $roleModel;
+    private Model $checkRole;
 
-    public function __construct(Model $roleModel)
+    public function __construct(Model $roleModel, Model $checkRole)
     {
         $this->roleModel = $roleModel;
+        $this->checkRole = $checkRole;
     }
 
     public function index()
     {
+        $this->checkRole->requiredPermission();
 
         $roles = $this->roleModel->getAllRoles();
 
@@ -25,10 +28,14 @@ class RoleController extends BaseController
     }
 
     public function create() {
+        $this->checkRole->requiredPermission();
+
         $this->view('roles.create');
     }
 
     public function store() {
+        $this->checkRole->requiredPermission();
+
         if (isset($_POST['role_name']) &&
             isset($_POST['role_description'])) {
 
@@ -41,12 +48,14 @@ class RoleController extends BaseController
     }
 
     public function delete($param) {
+        $this->checkRole->requiredPermission();
 
         $this->roleModel->deleteRole($param);
         header('Location: /roles');
     }
 
     public function edit($param) {
+        $this->checkRole->requiredPermission();
 
         $role = $this->roleModel->getRoleById($param);
 
@@ -58,6 +67,7 @@ class RoleController extends BaseController
     }
 
     public function update() {
+        $this->checkRole->requiredPermission();
 
         if (isset($_POST['id']) &&
             isset($_POST['role_name']) &&

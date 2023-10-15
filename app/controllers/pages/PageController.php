@@ -10,32 +10,36 @@ class PageController extends BaseController
 
     private Model $pageModel;
     private Model $roleModel;
-    private Model $check;
+    private Model $checkRole;
 
 
-    public function __construct(Model $pageModel, Model $roleModel, Model $check)
+    public function __construct(Model $pageModel, Model $roleModel, Model $checkRole)
     {
         $this->pageModel = $pageModel;
         $this->roleModel = $roleModel;
-        $this->check = $check;
+        $this->checkRole = $checkRole;
 
     }
 
 
     public function index()
     {
+        $this->checkRole->requiredPermission();
         $pages = $this->pageModel->getAllPages();
-        $this->check->requiredPermission();
 
         $this->view('pages.index', compact('pages'));
     }
 
     public function create() {
+        $this->checkRole->requiredPermission();
+
         $roles = $this->roleModel->getAllRoles();
         $this->view('pages.create', compact('roles'));
     }
 
      public function store() {
+         $this->checkRole->requiredPermission();
+
             if (isset($_POST['page_title']) && isset($_POST['page_slug']) && isset($_POST['roles'])){
                 $page_title = $_POST['page_title'];
                 $page_slug = $_POST['page_slug'];
@@ -53,6 +57,7 @@ class PageController extends BaseController
     }
 
     public function delete($param) {
+        $this->checkRole->requiredPermission();
 
         $this->pageModel->deletePage($param);
         header('Location: /pages');
@@ -61,6 +66,8 @@ class PageController extends BaseController
 
 
     public function edit($param) {
+        $this->checkRole->requiredPermission();
+
         $page = $this->pageModel->getPageById($param);
         $roles = $this->roleModel->getAllRoles();
 
@@ -73,6 +80,7 @@ class PageController extends BaseController
     }
 
     public function update() {
+        $this->checkRole->requiredPermission();
 
         if (isset($_POST['id']) &&
             isset($_POST['page_title']) &&
