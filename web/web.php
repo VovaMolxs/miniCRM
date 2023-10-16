@@ -5,6 +5,7 @@ use App\Controllers\IndexController;
 use App\Controllers\roles\RoleController;
 use App\Controllers\status\StatusController;
 use App\Controllers\todo\category\CategoryController;
+use App\Controllers\todo\tasks\TaskController;
 use App\Controllers\users\UsersController;
 use Core\Router\Router;
 
@@ -15,6 +16,10 @@ Router::post('/todo/category/store', [CategoryController::class, 'store']);
 Router::get('/todo/category/edit/{param}', [CategoryController::class, 'edit']);
 Router::post('/todo/category/update/{param}', [CategoryController::class, 'update']);
 Router::get('/todo/category/delete/{param}', [CategoryController::class, 'delete']);
+
+Router::get('/todo/tasks', [TaskController::class, 'index']);
+Router::get('/todo/tasks/create', [TaskController::class, 'create']);
+Router::post('/todo/tasks/store', [TaskController::class, 'store']);
 
 Router::get('/register', [AuthController::class, 'register']);
 Router::post('/register/store', [AuthController::class, 'store']);

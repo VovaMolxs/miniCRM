@@ -9,19 +9,20 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Category Title</th>
-                        <th>Category Description</th>
-                        <th>Category Usability</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Usability</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($category as $k=>$v)
+                @foreach($category    as $k=>$v)
                     <tr>
                         <td>{{$v['id']}}</td>
                         <td>{{$v['title']}}</td>
                         <td>{{$v['description']}}</td>
                         <td>{{$v['usability']}}</td>
+
                         <td>
                             <a href="/todo/category/edit/{{$v['id']}}" class="btn btn-sm btn-outline-primary">Edit</a>
                             <a href="/todo/category/delete/{{$v['id']}}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>

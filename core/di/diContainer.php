@@ -8,12 +8,14 @@ use App\Controllers\pages\PageController;
 use App\Controllers\roles\RoleController;
 use App\Controllers\status\StatusController;
 use App\Controllers\todo\category\CategoryController;
+use App\Controllers\todo\tasks\TaskController;
 use App\Controllers\users\UsersController;
 use App\Models\auth\AuthModel;
 use App\Models\Check;
 use App\Models\pages\PageModel;
 use App\Models\roles\RoleModel;
 use App\Models\todo\category\CategoryModel;
+use App\Models\todo\tasks\TaskModel;
 use App\Models\users\UserModel;
 use Core\AbstractCore;
 
@@ -79,6 +81,13 @@ class diContainer extends AbstractCore
                     $this->get(Check::class)
                 );
             },
+            TaskController::class => function () {
+                return new TaskController(
+                    $this->get(TaskModel::class),
+                    $this->get(Check::class),
+                    $this->get(CategoryModel::class)
+                );
+            },
             StatusController::class => function () {
                 return new StatusController();
             },
@@ -96,6 +105,9 @@ class diContainer extends AbstractCore
             },
             CategoryModel::class => function () {
                 return new CategoryModel();
+            },
+            TaskModel::class => function() {
+                return new TaskModel();
             }
 
 

@@ -11,6 +11,7 @@ class CategoryController extends BaseController
     private Model $todoCategoryModel;
     private Model $checkRole;
 
+
     public function __construct(Model $todoCategoryModel, Model $checkRole)
     {
         $this->todoCategoryModel = $todoCategoryModel;

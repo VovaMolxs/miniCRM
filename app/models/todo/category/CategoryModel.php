@@ -10,9 +10,11 @@ use PDOException;
 class CategoryModel implements Model
 {
     private $db;
+    private $user_id;
 
     public function __construct() {
         $this->db = Database::getInstance()->getConnection();
+        $this->user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
         try {
             $result = $this->db->query("SELECT 1 FROM todo_category LIMIT 1");
         } catch (PDOException $exception) {
@@ -40,8 +42,25 @@ class CategoryModel implements Model
 
     public function getAllCategory() {
         try {
-            $query = "SELECT * FROM todo_category";
-            $stmt = $this->db->query($query);
+            $query = "SELECT * FROM todo_category WHERE user = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute([$this->user_id]);
+            $todo_category = [];
+
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $todo_category[] = $row;
+            }
+            return $todo_category;
+        } catch (PDOException $exception) {
+            return false;
+        }
+    }
+    //внутри создания tasks
+    public function getAllCategoryWithUsability() {
+        try {
+            $query = "SELECT * FROM todo_category WHERE user = ? AND usability = 1";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute([$this->user_id]);
             $todo_category = [];
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -66,11 +85,11 @@ class CategoryModel implements Model
 
 
 
-    public function getCategoryId($id) {
+    public function getCategoryId() {
         try {
             $query = "SELECT * FROM todo_category WHERE id = ?";
             $stmt = $this->db->prepare($query);
-            $stmt->execute([$id]);
+            $stmt->execute([$this->user_id]);
             $category = $stmt->fetch(PDO::FETCH_ASSOC);
             return $category ? $category : false;
         } catch (PDOException $exception) {
